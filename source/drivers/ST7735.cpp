@@ -235,8 +235,8 @@ void ST7735::sendColorsStep(ST7735 *st)
         for (int i = 0; i < 16; ++i)
         {
             base[i] = (palette[i] >> 18) & 0x3f;
-            base[i + 32] = 0x00;        // (palette[i] >> 10) & 0x3f;
-            base[i + 32 + 64] = 0x00;   // (palette[i] >> 2) & 0x3f;
+            base[i + 32] = (palette[i] >> 10) & 0x3f;
+            base[i + 32 + 64] = (palette[i] >> 2) & 0x3f;
         }
         st->startRAMWR(0x2D);
         st->io.send(work->dataBuf, 128);
